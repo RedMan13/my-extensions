@@ -1,5 +1,6 @@
 import { castDynamic, castAutomatic } from "../../util/json-type-casting";
 import { getAtIn, setAtIn } from "../../util/object-path-keying";
+import { fixForServ00Rules } from "../../util/extension-sublimate";
 
 if (!Scratch.extensions.unsandboxed)
     throw new Error("can not load out side unsandboxed mode");
@@ -134,6 +135,7 @@ class WebRequests {
         });
     }
     getInfo() {
+        fixForServ00Rules();
         return {
             id: extensionId,
             // eslint-disable-next-line extension/should-translate

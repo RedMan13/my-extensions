@@ -1,4 +1,5 @@
 import { js_beautify } from "js-beautify";
+import { fixForServ00Rules } from "../../util/extension-sublimate";
 
 const { BlockType, ArgumentType } = Scratch;
 Scratch.extensions.register({
@@ -18,7 +19,7 @@ Scratch.extensions.register({
             }
         }
     ],
-    getInfo() { return this },
+    getInfo() { fixForServ00Rules(); return this; },
     beautify({ script }) {
         return js_beautify(script, {
             indent_with_tabs: true,

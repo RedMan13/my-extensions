@@ -1,3 +1,5 @@
+import { fixForServ00Rules } from "../../util/extension-sublimate";
+
 if (!Scratch.extensions.unsandboxed)
     throw new Error("can not load outside unsandboxed mode");
 
@@ -91,6 +93,7 @@ class WebSocketExtension {
         });
     }
     getInfo() {
+        fixForServ00Rules();
         return {
             id: "gsaWebsocket",
             // eslint-disable-next-line extension/should-translate
