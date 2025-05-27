@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const extensions = require('./extensions/index.json');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: {
         ...Object.fromEntries(
             extensions.map(ext => [ext.id, path.resolve('./extensions', ext.id, 'index.js')])
