@@ -1,0 +1,17 @@
+[
+    {
+        "name": "HTTP",
+        "description": "A complete implementation of web fetch, allowing for complete REST api support.",
+        "id": "http"
+    },
+    {
+        "name": "JS Beautifier (beautifier.io)",
+        "description": "Beautifies JavaScript, nothing much more to talk about",
+        "id": "js-beautify"
+    },
+    {
+        "name": "WebSocket",
+        "description": "Much alike Cloud Link, except supplies the raw Web Socket for usage with services such as discord.",
+        "id": "ws"
+    }
+]
