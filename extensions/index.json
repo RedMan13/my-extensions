@@ -14,4 +14,4 @@
         "description": "Much alike Cloud Link, except supplies the raw Web Socket for usage with services such as discord.",
         "id": "ws"
     }
-]
+] 
