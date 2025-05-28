@@ -5,12 +5,12 @@ const manager = Scratch.vm.extensionManager;
 export function fixForServ00Rules() {
     for (const id in manager.workerURLs) {
         const url = manager.workerURLs[id];
-        if (/^https?:\/\/godslayerakp\.serv00\.net/.test(url)) {
+        if (/^https?:\/\/(?:localhost:[0-9]{1,5}|godslayerakp\.serv00\.net)/.test(url)) {
             const code = manager.extUrlCodes[url];
             const hash = manager.extensionHashes[url];
             if (!code) continue;
             const newUrl = `data:application/javascript,${encodeURIComponent(code)}`;
-            manager.workerURLs[id] = url;
+            manager.workerURLs[id] = newUrl;
             delete manager.extUrlCodes[url];
             manager.extUrlCodes[newUrl] = code;
             delete manager.extensionHashes[url];
