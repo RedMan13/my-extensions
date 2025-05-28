@@ -5,16 +5,16 @@ const { BlockType, ArgumentType } = Scratch;
 Scratch.extensions.register({
     id: 'gsaJsBeautify',
     name: 'JS Beautifier',
-    color1: '#aaa',
+    color1: '#AAAAAA',
     blocks: [
         {
             opcode: 'beautify',
-            BlockType: BlockType.REPORTER,
+            blockType: BlockType.REPORTER,
             text: 'beautify [script]',
             arguments: {
                 script: {
                     type: ArgumentType.STRING,
-                    default: 'if(confirm("skbidi?"))console.log("guh")'
+                    defaultValue: 'if(confirm("skbidi?"))console.log("guh")'
                 }
             }
         }
