@@ -22,9 +22,9 @@ const info = registerFrom(`
         base64-url,
         buffer,
         URL,
-        data-uri
+        data-uri,
         JSON,
-        JSON-text
+        JSON-text,
         utf-16be,
         utf-16le,
         ibm866,
