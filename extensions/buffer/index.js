@@ -400,7 +400,7 @@ const info = registerFrom(`
             const address = compiler.descendInput(node.address).asNumber();
             const target = asBuffer(compiler.descendInput(node.target));
 
-            compiler.source +=`${target}.copy(${source}, ${address});\n`;
+            compiler.source +=`${target}.copy(${source}.value, ${address});\n`;
         }
     ],
     CopyFromInListToIn: [
@@ -419,7 +419,7 @@ const info = registerFrom(`
             const address = compiler.descendInput(node.address).asNumber();
             const target = asBuffer(compiler.descendInput(node.target));
 
-            compiler.source +=`${target}.copy(${source}, ${address}, ${start}, ${end});\n`;
+            compiler.source +=`${target}.copy(${source}.value, ${address}, ${start}, ${end});\n`;
         }
     ]
 }, {
