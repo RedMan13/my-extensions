@@ -13,5 +13,10 @@
         "name": "WebSocket",
         "description": "Much alike Cloud Link, except supplies the raw Web Socket for usage with services such as discord.",
         "id": "ws"
+    },
+    {
+        "name": "Buffer",
+        "description": "A small utility for nodejs-like buffer management",
+        "id": "buffer"
     }
 ] 
