@@ -30,4 +30,4 @@ jobs:
           username: 'godslayerakp'
           password: '${{ secrets.SSH_PASSWORD }}'
           local_path: './built-extensions'
-          remote_path: '/usr/home/godslayerakp/domains/godslayerakp.serv00.net/public_html'
+          remote_path: '/usr/home/godslayerakp/domains/godslayerakp.serv00.net/public_nodejs/dist'
