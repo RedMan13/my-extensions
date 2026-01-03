@@ -172,6 +172,19 @@ RenderedTarget.prototype.onGreenFlag = function() {
     thread.blockContainer = this.blocks;
     thread.pushStack(thread.topBlock);
     thread.generator = scopedEval(`function* ${this.sprite.name.replaceAll(/[^a-z0-9$_]+/g, '').replaceAll(/$[0-9]*/g, '')}(thread) {
+            /**
+             * String.prototype.indexOf, but it returns NaN not -1 on failure
+             * @param {string} str The string to check in
+             * @param {string} key The vaue to search for
+             * @param {number?} offset The offset into the string to start from
+             * @returns {number} The index of the key, or NaN if no instances where found
+             */
+            const _lastIndexNaN = (str, key, offset = Infinity) => {
+                if (!str) return NaN;
+                const val = str.lastIndexOf(key, offset);
+                if (val === -1) return NaN;
+                return val;
+            };
             const _parseFirefoxStack = stack => stack.split('\\n')
                 .map(line => {
                     const at = line.indexOf('@');
