@@ -55,10 +55,10 @@ function tick() {
                 useWorker: false,
             });
             editor.session.setMode('ace/mode/javascript');
-            editor.on('change', () => vm.editingTarget.extensionStorage.sourceCode = editor.getValue())
+            editor.on('change', () => vm.editingTarget.extensionStorage.gsaJsWorkspace.sourceCode = editor.getValue())
             onThemeChange(document.body.getAttribute('theme') === 'dark');
             if (!vm.editingTarget) return;
-            editor.setValue(vm.editingTarget.extensionStorage.sourceCode || '');
+            editor.setValue(vm.editingTarget.extensionStorage.gsaJsWorkspace.sourceCode || '');
         });
     }
     const flyout = document.querySelector('.blocklyFlyout');
@@ -95,7 +95,7 @@ window.onmousemove = e => {
 }
 vm.on('workspaceUpdate', () => {
     if (!editor) return;
-    editor.setValue(vm.editingTarget.extensionStorage.sourceCode || '');
+    editor.setValue(vm.editingTarget.extensionStorage.gsaJsWorkspace.sourceCode || '');
     editor.getSession().setAnnotations(getTargetAnnotations());
 });
 vm.on('BLOCK_DRAG_UPDATE', () => {
@@ -274,7 +274,7 @@ RenderedTarget.prototype.onGreenFlag = function() {
             const rootError = new Error();
             const rootStack = parseStack(rootError.stack, rootError.fileName, rootError.lineNumber, rootError.columnNumber);
             try {
-                ${this.extensionStorage.sourceCode}
+                ${this.extensionStorage.gsaJsWorkspace.sourceCode}
             } catch (err) {
                 const stack = parseStack(err.stack, err.fileName, err.lineNumber, err.columnNumber);
                 if (!Array.isArray(window.fatalErrors)) window.fatalErrors = [];

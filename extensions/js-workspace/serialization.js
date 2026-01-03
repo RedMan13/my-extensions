@@ -5,7 +5,7 @@ import { js_beautify } from "js-beautify";
 const { Thread } = Object.assign({}, vm.exports, vm.exports.i_will_not_ask_for_help_when_these_break());
 
 vm.runtime.on('PROJECT_LOADED', () => {
-    if (vm.runtime.extensionStorage.hasBeenConverted) return;
+    if (vm.runtime.extensionStorage.gsaJsWorkspace.hasBeenConverted) return;
     for (const target of vm.runtime.targets) {
         let result = '';
         result += 'let __target = thread.target;\n';
@@ -31,8 +31,8 @@ vm.runtime.on('PROJECT_LOADED', () => {
         }
         if (options.beuatifyScripts)
             result = js_beautify(result, options.beuatify);
-        target.extensionStorage.sourceCode ??= result;
+        target.extensionStorage.gsaJsWorkspace.sourceCode ??= result;
         vm.emitWorkspaceUpdate();
     }
-    vm.runtime.extensionStorage.hasBeenConverted = true;
+    vm.runtime.extensionStorage.gsaJsWorkspace.hasBeenConverted = true;
 });
