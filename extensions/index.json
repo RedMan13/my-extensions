@@ -18,5 +18,10 @@
         "name": "Buffer",
         "description": "A small utility for nodejs-like buffer management",
         "id": "buffer"
+    },
+    {
+        "name": "JavaScript Workspace",
+        "description": "Transforms your entire workspace into a javascript code editor.",
+        "id": "js-workspace"
     }
 ] 

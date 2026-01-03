@@ -2,33 +2,33 @@
  * the type defs here are system specific, as they reference with the expectation of
  * git-repos
  * |-PenguinMod
- * | |-scratch-render
- * | \-scratch-vm
+ * | |-PenguinMod-Render
+ * | \-PenguinMod-Vm
  * \-RedMan13
  *   \-my-extensions
  * being your folder layout
  */
-/** @type {import('../../../PenguinMod/scratch-vm/src/extension-support/tw-extension-api-common.js').ArgumentType} */
+/** @type {import('../../../PenguinMod/PenguinMod-Vm/src/extension-support/tw-extension-api-common.js').ArgumentType} */
 export const ArgumentType = Scratch.ArgumentType
-/** @type {import('../../../PenguinMod/scratch-vm/src/extension-support/tw-extension-api-common.js').ArgumentAlignment} */
+/** @type {import('../../../PenguinMod/PenguinMod-Vm/src/extension-support/tw-extension-api-common.js').ArgumentAlignment} */
 export const ArgumentAlignment = Scratch.ArgumentAlignment
-/** @type {import('../../../PenguinMod/scratch-vm/src/extension-support/tw-extension-api-common.js').BlockType} */
+/** @type {import('../../../PenguinMod/PenguinMod-Vm/src/extension-support/tw-extension-api-common.js').BlockType} */
 export const BlockType = Scratch.BlockType
-/** @type {import('../../../PenguinMod/scratch-vm/src/extension-support/tw-extension-api-common.js').BlockShape} */
+/** @type {import('../../../PenguinMod/PenguinMod-Vm/src/extension-support/tw-extension-api-common.js').BlockShape} */
 export const BlockShape = Scratch.BlockShape
-/** @type {import('../../../PenguinMod/scratch-vm/src/extension-support/tw-extension-api-common.js').TargetType} */
+/** @type {import('../../../PenguinMod/PenguinMod-Vm/src/extension-support/tw-extension-api-common.js').TargetType} */
 export const TargetType = Scratch.TargetType
-/** @type {import('../../../PenguinMod/scratch-vm/src/extension-support/tw-extension-api-common.js').Cast} */
+/** @type {import('../../../PenguinMod/PenguinMod-Vm/src/extension-support/tw-extension-api-common.js').Cast} */
 export const Cast = Scratch.Cast
-/** @type {import('../../../PenguinMod/scratch-vm/src/extension-support/tw-extension-api-common.js').Clone} */
+/** @type {import('../../../PenguinMod/PenguinMod-Vm/src/extension-support/tw-extension-api-common.js').Clone} */
 export const Clone = Scratch.Clone
-/** @type {import('../../../PenguinMod/scratch-vm/src/extension-support/tw-extension-api-common.js').Color} */
+/** @type {import('../../../PenguinMod/PenguinMod-Vm/src/extension-support/tw-extension-api-common.js').Color} */
 export const Color = Scratch.Color
 /** @type {{ unsandboxed: boolean, isPenguinMod: boolean, register: (ext: object) => void }} */
 export const extensions = Scratch.extensions
-/** @type {import('../../../PenguinMod/scratch-vm/src/virtual-machine.js')} */
+/** @type {import('../../../PenguinMod/PenguinMod-Vm/src/virtual-machine.js')} */
 export const vm = Scratch.vm
-/** @type {import('../../../PenguinMod/scratch-render/src/RenderWebGL.js')} */
+/** @type {import('../../../PenguinMod/PenguinMod-Render/src/RenderWebGL.js')} */
 export const renderer = Scratch.renderer
 /** @type {(url: string) => Promise<boolean>} */
 export const canFetch = Scratch.canFetch

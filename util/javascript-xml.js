@@ -1,4 +1,4 @@
-/** @import { PrecompToken } from '../builder/precomp-utils' */
+/** @import { PrecompToken } from 'builder/precomp-utils' */
 const { PrecompUtils } = require('builder');
 
 function isUppercase(tag) {
