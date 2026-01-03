@@ -31,7 +31,7 @@ vm.runtime.on('PROJECT_LOADED', () => {
         }
         if (options.beuatifyScripts)
             result = js_beautify(result, options.beuatify);
-        target.extensionStorage.sourceCode = result;
+        target.extensionStorage.sourceCode ??= result;
         vm.emitWorkspaceUpdate();
     }
     vm.runtime.extensionStorage.hasBeenConverted = true;

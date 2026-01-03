@@ -110,7 +110,8 @@ vm.on('BLOCK_DRAG_END', (blocks, topBlockId) => {
     const func = compile(thread).startingFunction.toString();
     let start = func.indexOf('try {') +5;
     let end = func.lastIndexOf('} catch (err) {c');
-    let text = func.slice(start, end).trim();
+    const adendums = func.slice(func.indexOf('runtime.getTargetForStage();') +28, func.match(/return function\* gen[0-9]+ \(\) {/).index);
+    let text = adendums + '\n' + func.slice(start, end).trim();
     if (options.beuatifyBlocks)
         text = js_beautify(text, options.beuatify);
     editor.insert(text);
@@ -126,9 +127,9 @@ vm.shareBlocksToTarget = async function(blocks, targetId, optFromTargetId) {
     thread.blockContainer = target.blocks;
     thread.stackClick = true;
     const func = compile(thread).startingFunction.toString();
-    let start = func.indexOf('try {') +5;
+    let start = func.indexOf('runtime.getTargetForStage();') +28;
     let end = func.lastIndexOf('} catch (err) {c');
-    let text = func//.slice(start, end).trim();
+    let text = func.slice(start, end).replace('try {', '').replace(/return function\* gen[0-9]+ \(\) {/, '').trim();
     if (options.beuatifyBlocks)
         text = js_beautify(text, options.beuatify);
     editor.insert(text);
