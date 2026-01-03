@@ -5,6 +5,7 @@ import { js_beautify } from "js-beautify";
 const { Thread } = Object.assign({}, vm.exports, vm.exports.i_will_not_ask_for_help_when_these_break());
 
 vm.runtime.on('PROJECT_LOADED', () => {
+    vm.runtime.extensionStorage.gsaJsWorkspace ??= {}
     if (vm.runtime.extensionStorage.gsaJsWorkspace.hasBeenConverted) return;
     for (const target of vm.runtime.targets) {
         let result = '';
@@ -31,6 +32,7 @@ vm.runtime.on('PROJECT_LOADED', () => {
         }
         if (options.beuatifyScripts)
             result = js_beautify(result, options.beuatify);
+        target.extensionStorage.gsaJsWorkspace ??= {}
         target.extensionStorage.gsaJsWorkspace.sourceCode ??= result;
         vm.emitWorkspaceUpdate();
     }

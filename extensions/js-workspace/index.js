@@ -3,7 +3,7 @@ import 'brace/mode/javascript';
 import 'brace/theme/twilight';
 import 'brace/theme/dawn';
 import { vm, gui, BlockType } from '../../util/scratch-types';
-const { Thread, RenderedTarget, jsexecute: { scopedEval, globalState } } = Object.assign({}, vm.exports, vm.exports.i_will_not_ask_for_help_when_these_break());
+const { Thread, RenderedTarget, jsexecute: { scopedEval, runtimeFunctions } } = Object.assign({}, vm.exports, vm.exports.i_will_not_ask_for_help_when_these_break());
 import { compile } from './compile';
 import './dialog-styles.css';
 import { js_beautify } from "js-beautify";
@@ -55,6 +55,7 @@ function tick() {
                 useWorker: false,
             });
             editor.session.setMode('ace/mode/javascript');
+            // vm.editingTarget.extensionStorage.gsaJsWorkspace ??= {}
             editor.on('change', () => vm.editingTarget.extensionStorage.gsaJsWorkspace.sourceCode = editor.getValue())
             onThemeChange(document.body.getAttribute('theme') === 'dark');
             if (!vm.editingTarget) return;
@@ -95,6 +96,7 @@ window.onmousemove = e => {
 }
 vm.on('workspaceUpdate', () => {
     if (!editor) return;
+    vm.editingTarget.extensionStorage.gsaJsWorkspace ??= {}
     editor.setValue(vm.editingTarget.extensionStorage.gsaJsWorkspace.sourceCode || '');
     editor.getSession().setAnnotations(getTargetAnnotations());
 });
@@ -171,6 +173,7 @@ RenderedTarget.prototype.onGreenFlag = function() {
     thread.target = this;
     thread.blockContainer = this.blocks;
     thread.pushStack(thread.topBlock);
+    vm.editingTarget.extensionStorage.gsaJsWorkspace ??= {}
     thread.generator = scopedEval(`function* ${this.sprite.name.replaceAll(/[^a-z0-9$_]+/g, '').replaceAll(/$[0-9]*/g, '')}(thread) {
             /**
              * String.prototype.indexOf, but it returns NaN not -1 on failure
@@ -364,6 +367,10 @@ if (localStorage.getItem('js-workspaces:options')) {
 Scratch.extensions.register({
     getInfo() {
         fixForServ00Rules();
+        vm.runtime.registerCompiledExtensionBlocks("gsaJsWorkspace", {
+            ir: Object.fromEntries(Object.keys(runtimeFunctions).map(key => [key, () => ({ kind: 'stack' })])),
+            js: Object.fromEntries(Object.keys(runtimeFunctions).map(key => [key, (node, compiler) => { compiler.source += `${key}()`; }]))
+        });
         return {
             color1: '#252526',
             name: 'Internal Functions',
@@ -374,6 +381,10 @@ Scratch.extensions.register({
                     opcode: 'openSettings',
                     text: 'Open settings'
                 },
+                ...Object.keys(runtimeFunctions).map(key => ({
+                    opcode: key,
+                    text: key
+                }))
             ]
         }
     },
