@@ -369,7 +369,13 @@ Scratch.extensions.register({
         fixForServ00Rules();
         vm.runtime.registerCompiledExtensionBlocks("gsaJsWorkspace", {
             ir: Object.fromEntries(Object.keys(runtimeFunctions).map(key => [key, () => ({ kind: 'stack' })])),
-            js: Object.fromEntries(Object.keys(runtimeFunctions).map(key => [key, (node, compiler) => { compiler.source += `${key}()`; }]))
+            js: Object.fromEntries(Object.keys(runtimeFunctions).map(key => {
+                const line = runtimeFunctions[key].slice(runtimeFunctions[key].indexOf(key));
+                const match = line.match(/[a-z0-9$_]+(?:\s*=\s*)?(?:function\*?)?\(?((?:[a-z0-9$_]+)(?:,\s*(?:[a-z0-9$_]+))*)?\)?\s*(?:=>|{)/i);
+                const args = match[1]?.split?.(/,\s*/gi) ?? [];
+                const template = args.length ? `/* ${args.join(', ')} */` : '';
+                return [key, (node, compiler) => { compiler.source += `${key}(${template})`; }];
+            }))
         });
         return {
             color1: '#252526',
