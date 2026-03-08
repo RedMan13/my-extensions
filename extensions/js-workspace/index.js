@@ -10,6 +10,7 @@ import { js_beautify } from "js-beautify";
 import { fixForServ00Rules } from "../../util/extension-sublimate";
 import AddIcon from "./icon-add.svg";
 import './serialization';
+import { openDocumentation } from './documentation';
 
 // get the font height for ace, important because we need to convert workspace units to ace units
 const canvas = document.createElement('canvas');
@@ -59,7 +60,7 @@ function tick() {
             editor.on('change', () => vm.editingTarget.extensionStorage.gsaJsWorkspace.sourceCode = editor.getValue())
             onThemeChange(document.body.getAttribute('theme') === 'dark');
             if (!vm.editingTarget) return;
-            editor.setValue(vm.editingTarget.extensionStorage.gsaJsWorkspace.sourceCode || '');
+            editor.setValue(vm.editingTarget.extensionStorage.gsaJsWorkspace?.sourceCode || '');
         });
     }
     const flyout = document.querySelector('.blocklyFlyout');
@@ -97,7 +98,7 @@ window.onmousemove = e => {
 vm.on('workspaceUpdate', () => {
     if (!editor) return;
     vm.editingTarget.extensionStorage.gsaJsWorkspace ??= {}
-    editor.setValue(vm.editingTarget.extensionStorage.gsaJsWorkspace.sourceCode || '');
+    editor.setValue(vm.editingTarget.extensionStorage.gsaJsWorkspace?.sourceCode || '');
     editor.getSession().setAnnotations(getTargetAnnotations());
 });
 vm.on('BLOCK_DRAG_UPDATE', () => {
@@ -387,6 +388,11 @@ Scratch.extensions.register({
                     opcode: 'openSettings',
                     text: 'Open settings'
                 },
+                {
+                    blockType: BlockType.BUTTON,
+                    opcode: 'openDocumentation',
+                    text: 'Open Documentation'
+                },
                 ...Object.keys(runtimeFunctions).map(key => ({
                     opcode: key,
                     text: key
@@ -563,5 +569,6 @@ Scratch.extensions.register({
             localStorage.setItem('js-workspaces:options', JSON.stringify(options))
             settingsBox.remove();
         });
-    }
+    },
+    openDocumentation
 });

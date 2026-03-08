@@ -23,5 +23,10 @@
         "name": "JavaScript Workspace",
         "description": "Transforms your entire workspace into a javascript code editor.",
         "id": "js-workspace"
+    },
+    {
+        "name": "Compiler Rings",
+        "description": "Lets you inject arbitrary code into the compile output.",
+        "id": "compile-rings"
     }
 ] 
