@@ -1,4 +1,4 @@
-const elementClassNames = {
+window.elementClassNames = {
     "a": 'HTMLAnchorElement',
     "area": 'HTMLAreaElement',
     "audio": 'HTMLAudioElement',
