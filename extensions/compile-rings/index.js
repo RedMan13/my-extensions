@@ -41,7 +41,7 @@ const info = registerFrom(`
     ],
     Inject: [
         (generator, block) => ({
-            kind: 'block',
+            kind: 'stack',
             code: generator.descendInputOfBlock(block, '$1')
         }),
         (node, compiler) => {
