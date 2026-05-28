@@ -56,6 +56,7 @@ function tick() {
                 useWorker: false,
             });
             editor.session.setMode('ace/mode/javascript');
+            editor.$blockScrolling = Infinity;
             // vm.editingTarget.extensionStorage.gsaJsWorkspace ??= {}
             editor.on('change', () => vm.editingTarget.extensionStorage.gsaJsWorkspace.sourceCode = editor.getValue())
             onThemeChange(document.body.getAttribute('theme') === 'dark');
@@ -90,8 +91,8 @@ window.onmousemove = e => {
         return;
     }
     if (!dragging) return;
-    resultX = e.offsetX / fontWidth;
-    resultY = e.offsetY / fontHeight;
+    resultX = Math.floor(e.offsetX / fontWidth);
+    resultY = Math.floor(e.offsetY / fontHeight);
     inEditor = true;
     editor.moveCursorTo(resultY, resultX);
 }
