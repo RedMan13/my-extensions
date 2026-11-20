@@ -7,7 +7,7 @@
     "build": "webpack"
   },
   "buildCommand": "webpack",
-  "buildOutput": "built-extensions",
+  "buildOutput": "./built-extensions",
   "keywords": [],
   "author": "",
   "license": "ISC",
