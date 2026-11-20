@@ -21,5 +21,10 @@
   "dependencies": {
     "brace": "^0.11.1",
     "js-beautify": "^1.15.4"
+  },
+  "allowScripts": {
+    "ssh2@1.17.0": true,
+    "protobufjs@7.6.6": true,
+    "cpu-features@0.0.10": true
   }
 }
