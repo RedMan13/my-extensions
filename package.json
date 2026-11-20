@@ -6,6 +6,8 @@
     "start": "webpack-dev-server --host 0.0.0.0 --port 8000",
     "build": "webpack"
   },
+  "buildCommand": "webpack",
+  "buildOutput": "built-extensions",
   "keywords": [],
   "author": "",
   "license": "ISC",
